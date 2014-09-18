@@ -18,6 +18,7 @@ public:
   unsigned Literals() const { return nbvar; }
   unsigned Clauses() const { return nbclauses; }
   vector<unsigned> getCoveredClauses(int index) const {return coverage[index]}
+  vector<int> getLiteralsInClause(int index) const {return formula[index]}
 protected:
   unsigned nbvar;
   unsigned nbclauses;

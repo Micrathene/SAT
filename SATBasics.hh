@@ -6,6 +6,8 @@
 class SATState
 {
   friend ostream& operator<<(ostream&, const SATState& sats);
+  friend ostream& operator<<(ostream&, const SATState& sat);
+  friend ostream& operator>>(ostream& os, const SATState& sat);
   friend bool operator==(const SATState& st1, const SATState& st2);
 public:
   SATState(const SATInput& i);
@@ -21,16 +23,16 @@ protected:
 
 };
 
-class SwapSAT
+class FlipSAT
 {
-  friend ostream& operator<<(ostream&, const SwapSAT &);
-  friend istream& operator>>(istream&, SwapSAT &);
-  friend bool operator==(const SwapSAT& sw1, const SwapSAT& sw2);
-  friend bool operator!=(const SwapSAT& sw1, const SwapSAT& sw2);
-  friend bool operator<(const SwapSAT& sw1, const SwapSAT& sw2);
+  friend ostream& operator<<(ostream&, const FlipSAT &);
+  friend istream& operator>>(istream&, FlipSAT &);
+  friend bool operator==(const FlipSAT& sw1, const FlipSAT& sw2);
+  friend bool operator!=(const FlipSAT& sw1, const FlipSAT& sw2);
+  friend bool operator<(const FlipSAT& sw1, const FlipSAT& sw2);
 public:
-  SwapSAT(unsigned pos1 = 0, unsigned pos2 = 0);
-  unsigned p1, p2;
+  FlipSAT(bool l1 = false);
+  bool l1;
 };
 
 #endif
