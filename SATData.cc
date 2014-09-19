@@ -26,10 +26,13 @@ SATInput::SATInput(string file_name)
   string ch;
   iss >> ch >> nbvar >>  nbclauses;
   formula.resize(nbclauses);
+  coverage.resize(nbvar+1);
   unsigned c = 0;
+
   do {
       getline(is, line);
-      if (line[0] == '%' || line[0] == '0')
+
+      if (line[0] == '%' || line[0] == '0' || is.eof())
         break;
       iss.clear();
       iss.str(line);
@@ -39,6 +42,7 @@ SATInput::SATInput(string file_name)
       while (lit != 0) {
         assert(lit <= static_cast<int>(nbvar) && lit >= -static_cast<int>(nbvar));
         formula[c].push_back(lit);
+        coverage[(lit > 0 ? lit : -lit)-1].push_back(c); //Pos_coverage and neg_coverage?
         iss >> lit;
       }
       c++;
@@ -49,9 +53,18 @@ SATInput::SATInput(string file_name)
 
 ostream& operator<<(ostream& os, const SATInput& pa) {
 // Insert the code that write the input object (needed for debugging purposes)
+    os << "Clauses\n";
   for (unsigned int c=0;c<pa.nbclauses;c++) {
     for (unsigned int l=0;l<pa.formula[c].size();l++)
       os<<pa.formula[c][l]<<" ";
+    os<<endl;
+  }
+  
+    os << "Literal coverage\n";
+  for (unsigned int c=0;c<pa.nbvar;c++) {
+      os << "lit" << c+1 <<": ";
+    for (unsigned int l=0;l<pa.coverage[c].size();l++)
+      os<<pa.coverage[c][l]<<" ";
     os<<endl;
   }
   return os;

@@ -1,11 +1,21 @@
-#include "SATHelpers.hh"
-
-using namespace EasyLocal::Debug;
+//#include "SATHelpers.hh"
+#include "SATData.hh"
+//using namespace EasyLocal::Debug;
 
 int main(int argc, const char* argv[])
 {
-  ParameterBox main_parameters("main", "Main Program options");
+  //ParameterBox main_parameters("main", "Main Program options");
+    
+    SATInput in("in_file"); //Hardcoded, bad
+    
+    cout << in;
+    
+    
 
+    
+
+    return 0;
+    /*
   // The set of arguments added are the following:
   Parameter<string> instance("instance", "Input instance", main_parameters); 
   Parameter<int> seed("seed", "Random seed", main_parameters);
@@ -55,5 +65,5 @@ int main(int argc, const char* argv[])
 
 
   tester.RunMainMenu();
-  return 0;
+  return 0;*/
 }

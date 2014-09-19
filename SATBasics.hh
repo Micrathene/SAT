@@ -12,7 +12,7 @@ class SATState
 public:
   SATState(const SATInput& i);
   SATState& operator=(const SATState& st);
-
+  void flipLiteral(unsigned l);
 
 protected:
   const SATInput& in; 

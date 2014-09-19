@@ -17,8 +17,8 @@ public:
   SATInput(string file_name);
   unsigned Literals() const { return nbvar; }
   unsigned Clauses() const { return nbclauses; }
-  vector<unsigned> getCoveredClauses(int index) const {return coverage[index]}
-  vector<int> getLiteralsInClause(int index) const {return formula[index]}
+  vector<unsigned> getCoveredClauses(int index) const {return coverage[index];}
+  vector<int> getLiteralsInClause(int index) const {return formula[index];}
 protected:
   unsigned nbvar;
   unsigned nbclauses;
@@ -33,8 +33,8 @@ class SATOutput
   friend istream& operator>>(istream&, SATOutput &);
 public:
   SATOutput(const SATInput& in);
-  char operator()(int i, int j) const { return cb[i][j]; }
-  char& operator()(int i, int j) { return cb[i][j]; }
+  int operator()(int i, int j) const { return cb[i][j]; }
+  int& operator()(int i, int j) { return cb[i][j]; }
 protected:
   const SATInput& in; 
   vector<vector<int> > cb;
